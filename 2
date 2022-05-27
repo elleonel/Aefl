@@ -1,8 +1,0 @@
-(function() {
-	document.addEventListener('keypress', function(e) {
-	 if (e.key === '`') {
-			var questionID = document.querySelector('[style="display: initial;"] div div').dataset.testid + "."
-			navigator.clipboard.writeText(questionID)
-		};
-	});
-})();
