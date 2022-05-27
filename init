@@ -9,7 +9,7 @@
                 answer.forEach(ans => {
                     Question.querySelectorAll('[aria-label="draggableChoice"]').forEach(text => {
                     if (text.querySelector('img')) {
-                        if (text.querySelector('img').src == ans.split('¬')[0]) {
+                        if (text.querySelector('img').src == ans.spliAt('¬')[0]) {
                             text.style.background = '#f5fbf9'
                             text.style.borderColor = '#16b791'
                             text.addEventListener('click',function() {
@@ -81,13 +81,13 @@
         }
         var Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
     	const ADVT = {
-    	    BIOLOGY: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/BIOLOGY.txt").then(r => r.text()),
-    	    ARABIC: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/ARABIC.txt").then(r => r.text()),
-    	    ENGLISH: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/ENGLISH.txt").then(r => r.text()),
-    	    ISLAMIC_STUDIES: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/ISLAMIC_STUDIES.txt").then(r => r.text()),
-    	    MATH: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/MATH.txt").then(r => r.text()),
-    	    PHYSICS: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/PHYSICS.txt").then(r => r.text()),
-    	    SOCIAL_STUDIES: await fetch("https://raw.githubusercontent.com/RedVented714/Red-Sussy-Baka-On-Drugs/main/SOCIAL_STUDIES.txt").then(r => r.text())
+    	    BIOLOGY: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/BIOLOGY.txt").then(r => r.text()),
+    	    ARABIC: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ARABIC.txt").then(r => r.text()),
+    	    ENGLISH: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ENGLISH.txt").then(r => r.text()),
+    	    ISLAMIC_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ISLAMIC_STUDIES.txt").then(r => r.text()),
+    	    MATH: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/MATH.txt").then(r => r.text()),
+    	    PHYSICS: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/PHYSICS.txt").then(r => r.text()),
+    	    SOCIAL_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/SOCIAL_STUDIES.txt").then(r => r.text())
     	};
     	function waitForElm(selector) {
     	    return new Promise(resolve => {
