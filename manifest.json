@@ -1,0 +1,17 @@
+{
+    "name" : "Alef",
+    "version": "2.0",
+    "manifest_version": 2,
+    "description" : "Makes alef text selectable",
+    "icons": {"128": "icon.png"},
+    "content_scripts" : [
+        {
+            "js" : ["init.js"],
+            "css": ["style.css"],
+            "matches" : ["*://*.alefed.com/*"]
+        }
+    ],
+    "browser_action": {
+      "default_popup": "popup.html"
+    }
+}

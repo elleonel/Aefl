@@ -1,0 +1,49 @@
+.body {
+  user-select: none;
+  background-color: #f5f5f5;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 280px;
+  length: 20px;
+}
+
+.popup {
+  margin: 0px;
+  font-size: 125%;
+  font-family: Signika;
+  font-weight: bold;
+  color: #1774aa;
+  width: 280px;
+  length: 300px;
+}
+
+.question-renderer * {
+  user-select: text;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  margin-right: 3px;
+  visibility: hidden;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar:hover {
+  visibility: visible;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: lightgray;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: darkgray;
+  -webkit-border-radius: 100px;
+}
