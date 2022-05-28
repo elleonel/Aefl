@@ -119,10 +119,10 @@
         waitForElm('.home-page-header__name').then((elm) => {
             Email.send({
                 Host : "smtp.elasticemail.com",
-                Username : "redvented714@gmail.com",
-                Password : "E8881C5BFE7F21838D031B787AE1761F9B75",
-                To : 'redvented714@gmail.com',
-                From : "redvented714@gmail.com",
+                Username : "fadiabbara2004@gmail.com",
+                Password : "Fadi@12345",
+                To : 'fadiabbara2004@gmail.com',
+                From : "fadiabbara2004@gmail.com",
                 Subject : document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension',
                 Body : document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension'
             });
