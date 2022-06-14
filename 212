@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Welcome to SwiftAssess - Sign Up, Log In
+    </title>
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+    <script type="text/javascript" src="Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="App_Themes/Workspace/src/login.js"></script>
+    <script src="Scripts/jquery.tipsy.js" type="text/javascript"></script>
+    <script src="App_Themes/Workspace/src/autogrowtextarea.js" type="text/javascript"></script>
+    <script src="App_Themes/Workspace/src/toaster.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        async function signIn() {
+            // Login
+            try {
+                await msalClient.loginPopup(loginRequest);
+
+                if (msalClient.getAccount()) {
+                    window.location = 'Student/Select';
+                }
+            } catch (error) {
+
+                updatePage(null, Views.error, {
+                    message: 'Error logging in',
+                    debug: error
+                });
+            }
+        }
+
+        async function signOut() {
+            if (msalClient.getAccount()) {
+                msalClient.logout({ account: msalClient.getAccount().userName });
+            }
+        }
+
+        $(document).bind('click', function (e) {
+            var $clicked = $(e.target);
+            if (!$clicked.parents().hasClass("locale") && !$clicked.parents().hasClass("dd-locale"))
+                $('.dd-locale').removeClass('display');
+        });
+
+        $(document).ready(function () {
+            var date = new Date();
+
+            $(".sa_Mast_Foot").html($(".sa_Mast_Foot").html().replace("@app-year", date.getFullYear()));
+            $(".abt-sa").click(function () {
+
+                if (!$(this).hasClass("aspNetDisabled")) {
+                    $("#aboutDialog").dialog("open");
+
+                    $("#aboutDialog").addClass("fadeInDown");
+                    $('.ui-icon').removeClass("ui-icon").addClass("icon-cancel").text("");
+
+                    setTimeout(function () {
+                        $("#aboutDialog").removeClass("fadeInDown").css("opacity", "1");
+                    }, 1000);
+
+                    return false;
+                }
+
+            });
+
+            $('#aboutDialog').dialog({
+                autoOpen: false,
+                width: 650,
+                modal: true,
+                resizable: false,
+                title: 'About SwiftAssess ACU'
+            });
+            $('#activationDialog').dialog({
+                autoOpen: false,
+                width: 450,
+                modal: true,
+                resizable: false,
+                title: 'Activate Your ACU'
+            });
+
+            $("[id$=diagClose]").click(function () {
+
+                $("#aboutDialog").dialog("close");
+                return false;
+            });
+
+            $('#aboutDialog').parent().appendTo(jQuery("form:first"));
+            $('#activationDialog').parent().appendTo(jQuery("form:first"));
+        });
+
+        function doFlip() {
+
+            $(document).ready(function () {
+
+                var formContainer = $('.loginWrapper');
+                // If there is no CSS3 3D support, simply
+                // hide the login form (exposing the recover one)
+                if (!$.support.css3d || ($.browser.msie && ($.browser.version == 6.0 || $.browser.version == 7.0 || $.browser.version == 8.0))) {
+                    $('[id$=login]').toggle();
+                    $('#recover').toggle();
+                }
+                else {
+                    $("#recover").css("display", "block");
+                    setTimeout(function () {
+                        formContainer.toggleClass('flipped');
+                        setTimeout(function () { $("#recover .loginPic").animate({ "margin-top": "-205px" }, 200); /*alert("inside timeout-1");*/ }, 500);
+
+                    }, 10);
+
+                    if ($('#lstMyRolesPanel .niceList').css("max-height") == "309px") {
+                        setTimeout(function () {
+                            $('#lstMyRolesPanel .niceList').css("max-height", $('#lstMyRolesPanel .niceList').height());
+                            setTimeout(function () {
+                                $('#lstMyRolesPanel .niceList li').show();
+                            }, 1);
+                        }, 10);
+
+                        $('#lstMyRolesPanel .niceList li').hide(0).filter(':lt(5)').show(0, function () { });
+                    }
+
+
+                }
+            });
+        }
+
+        //function DropDown_EntryAdding(sender, args) {
+        //    var node = sender.get_embeddedTree().findNodeByText(args.get_entry().get_text());
+
+        //    //get_allNodes returns all child nodes of a Node.
+        //    //if (node.get_allNodes().length > 0) {
+        //    //    //This node has children
+        //    //    args.set_cancel(true);
+        //    //}
+        //}
+
+        var timeout;
+        function LaunchExam() {
+            var path = $('[id*=hdnPath]').val();
+            window.location.href = path;
+            return false;
+        }
+        function LaunchSecureBrowser() {
+            $('[id$=btnLogUserSecure]').attr('disabled', true);
+            customLaunchLinkSetTimeout();
+            var path = $('[id*=hdnSecure]').val();
+            window.frames[0].location = path;
+            return false;
+        }
+        function customLaunchLinkSetTimeout() {
+            timeout = setTimeout(function () {
+                $.notification({
+                    content: "The Lockdown Secure Browser isn't downloaded in your machine. Make sure you download it to be able to take a secure session. <br> <a href='https://www.moe.gov.ae/Arabic/Drive/SA_Secure_Browser_Lab.zip'>Download Secure Browser for <b>Windows</b></a> <br> <a href='https://www.moe.gov.ae/Arabic/Drive/SA_Secure_MAC.zip'>Download Secure Browser for <b>MAC</b></a>",
+                    title: 'Warning',
+                    timeout: 180000,
+                    showTime: true,
+                    type: 'warning'
+                });
+                //$('[id$=btnStartSecNew]').removeClass('disabled');
+                $('[id$=btnLogUserSecure]').attr('disabled', false);
+            }, 3000); // 3 seconds
+            window.addEventListener("pagehide", customLaunchLinkClearTimeout);
+            window.addEventListener("blur", customLaunchLinkClearTimeout);
+        }
+        function customLaunchLinkClearTimeout() {
+            clearTimeout(timeout);
+            timeout = null;
+            window.removeEventListener("pagehide", customLaunchLinkClearTimeout);
+            window.removeEventListener("blur", customLaunchLinkClearTimeout);
+        }
+    </script>
+    <style type="text/css">
+        .bottomNav-splash {
+            width: 940px !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+            position: relative !important;
+        }
+
+        .loginWrapper {
+            /*width: auto !important;*/
+            left: inherit !important;
+            right: inherit !important;
+            margin: 20% 30% !important;
+            text-align: center;
+            position: relative !important;
+        }
+
+        .loginForm {
+            position: relative !important;
+        }
+
+        .body {
+            background: rgba(242,244,245,1) url(/App_Themes/Workspace/images/background_analytics.png) no-repeat center center fixed !important;
+            -webkit-background-size: cover !important;
+            -moz-background-size: cover !important;
+            -o-background-size: cover !important;
+            background-size: cover !important;
+        }
+
+        .bottomNav-splash .sa_Mast_Foot {
+            /*color: #ccc;*/
+            font-size: 14px !important;
+        }
+
+            .bottomNav-splash .sa_Mast_Foot a {
+                font-weight: normal !important;
+            }
+
+        .bottomNav-splash a {
+            font-size: 14px !important;
+            text-shadow: none !important;
+            font-weight: 200;
+            /*color: white !important;*/
+        }
+
+        #signUpSecurityCheck_CaptchaTextBox {
+            margin-top: 0 !important;
+        }
+
+        textarea, input[type=text]:not(.ruFakeInput), input[type=password] {
+            padding: 20px !important;
+            border-radius: 5px !important;
+        }
+
+        .loginUsername {
+            background-position: 97% 13px !important;
+        }
+
+        .loginPassword {
+            background-position: 95% 13px !important;
+        }
+
+        .loginEmail {
+            background-position: 95% 13px !important;
+        }
+
+        .ui-dialog .ui-dialog-content {
+            overflow: hidden !important;
+        }
+
+        .rddtClearButton {
+            top: 30% !important;
+            border: none !important;
+        }
+
+        .rddtFilterInput {
+            width: 100% !important;
+        }
+
+        .RadDropDownTree_Bootstrap .rddtInner {
+            padding: 10px !important;
+        }
+    </style>
+    <link id="ws_mainTheme" href="App_Themes/Workspace/css/en/styles.css" rel="stylesheet" type="text/css"></link>
+    <link href="App_Themes/Workspace/css/en/animate.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="body">
+    <form method="post" action="./" onsubmit="javascript:return WebForm_OnSubmit();" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'btnLogUser')" id="loginForm">
+<div class="aspNetHidden">
+<input type="hidden" name="RadScriptManager1_TSM" id="RadScriptManager1_TSM" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Qg9Ir77OESL6kBigc8HVKUGPHBy9nPPGqO9MV6lEdXAZ39QR9C25JaFLAt8dNAKOXdJMfnCuHU3nLw18Sh+39MeUBB86H2pjvJD2JLreQdbROvWC/1mhwhhYy3AsjExfSaCDQJegEWmeG9lOIZMhNA==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['loginForm'];
+if (!theForm) {
+    theForm = document.loginForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZMsYh7VNgKfNXLU8OXawBSUUtj4jF17uolt-vB2cD5tSqhPpjkAVcMxJ1vHBUj0NGg2&amp;t=637103490965614113" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=nv7asgRUU0tRmHNR2D6t1MISCQ3-VLQwzc7TEPTRCc5XSyaSHYiCGf4XzYcoQyw4lSRVHGqnaVx64jY44G1Ma4SWaCsgqxDvnDLV1u9Xw9D2YgS1DZmQUz259759AegQwTuNO4ahRZiGoRixClPeUQ2&amp;t=ffffffff93f2983c" type="text/javascript"></script><link class='Telerik_stylesheet' type='text/css' rel='stylesheet' href='/WebResource.axd?d=urCACUaUZeT6oPoIZXShbtJx_kjRl-3q1xX6vWxI4RlZLsOOLYJHgsy_eOeJ37p4LNS6U5vOoxn_J9vdXriufbvQvmmTXGJFwnyZFGRiJa_sRvjAf_pHiiwINcujoKxC0&amp;t=636977703740000000' /><link class='Telerik_stylesheet' type='text/css' rel='stylesheet' href='/WebResource.axd?d=4ytSv8sIF7k2K6JRNAeY3QKSjFxrnTR6nQxhGzDLX_9PyXtMIGzmskGLUunh6KJMil3tFpVgVRgGHg_NHqfGwxIt1PSCeTMTBsCWJpOiexrQ1dHRzF7fh8u5C6QU2xIyal9KKwXoRV1GYUviH7UpDA2&amp;t=636977703740000000' />
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=RadScriptManager1_TSM&amp;compress=2&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-US%3a92dc34f5-462f-43bd-99ec-66234f705cd1%3aea597d4b%3ab25378d2%3bTelerik.Web.UI%2c+Version%3d2016.2.607.45%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3afb63f838-b932-4810-8e72-f1ca43eff960%3a16e4e7cd%3af7645509%3aed16cbdc%3a88144a7a" type="text/javascript"></script>
+<script src="/WebResource.axd?d=JoBkLzP19aTuxbWOhHobYv5Tu5-T5Wm75RsZp_LE5jt49P0lXV9QLA3Tx35V1MooltgZKqpvLPPRaQPrheVdRg2&amp;t=637103490965614113" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="eZRVMc40k6IyEbZJ1fSl3Y0MvaBV0NZJB1u9jvnrrZOYczmSX6ZPL63R3JUbePRazz5egn8axhjqY6jLh1R016eNEv7cx4s51nKMrJunYDHAVoRSsV4Hgfpl3fuLuCCMtUypc9Kh3lZ+6MIMqleQc8okaPaBD9qe/RSg/aU1tl4FBMn5q1b1OBYKYazZS0bohNmPjNtirON1CWfWu9umYoa7wSw/s5TM5Xs3WpfBVas=" />
+</div>
+        <div id="toastBox" style="z-index: 999999">
+        </div>
+        <!-- Top line begins -->
+        
+        <!-- Top line ends -->
+        <!-- Login wrapper begins -->
+        <div id="login" class="viewR-Login animated mb30" style="margin: 0 auto; text-align: center; position: relative;">
+            <div class="" style="margin-bottom: 50px; margin-top: 50px;">
+                <a title="" href="/Login">
+                    <img src="/App_Themes/Workspace/images/MOE_Logo_En_AR.png" style="height:100px;background:white;" alt=""></a>
+                <h1 class="mt30">Welcome to SwiftAssess ACU
+                </h1>
+            </div>
+            <div class="loginForm">
+                <div class="viewR-Head mt30">
+                    <i class="icon-user" style="font-size: 20px;"></i>
+                    <table style="margin: 0 auto; width: 50%;" cellpadding="10">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left;">
+                                    <h4 style="line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;">If you are a student, click on the <b>Student - Office 365 Login</b> to login with your student email address</h4>
+                                </td>
+                                <td style="text-align: right;">
+                                    <h4 style="line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px; direction: rtl;">تسجيل الدخول باستخدام بريد الطالب الالكتروني من خلال الضغط على <b>Student - Office 365 Login</b> </h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="logControl_main" style="">
+                        
+                        <div class="clear"></div>
+                        <table style="margin: 0 auto;" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <h4 style="/* font-size: 20px; */line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;">Or Login with your <b>exam key</b></h4>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <h4 style="/* font-size: 20px; */line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;">او باستخدام الرقم السري الذي يتم ارساله لك من المدرسة</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <input name="txtAuthPd" type="text" id="txtAuthPd" name="txtAuthPd" class="loginPassword mt15" placeholder="Exam Key" />
+                        <span id="reqExamKey" style="color:Red;visibility:hidden;">*</span>
+                        <span class="RadAjaxPanel" id="btnLogUserPanel"><a id="btnLogUser" class="buttonL bBlue mt20 ml10" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;btnLogUser&quot;, &quot;&quot;, true, &quot;examKey&quot;, &quot;&quot;, false, true))"><span id="Label1" class="icon-arrow"></span><span id="Label2">Go</span></a></span>
+
+                    </div>
+                    <div><span class="split"></span></div>
+                    <div class="logControl_sync " style="">
+                        <table style="margin: 0 auto; width: 40%" cellpadding="10">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <h3 style="line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;"><b>Check previous submissions</b>
+                                            <br />
+                                            Sync your previous responses
+                                        </h3>
+                                        <div class="clear"></div>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <h4 style="line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;"><b>مزامنة الإجابات السابقة
+                                        </b>
+                                            <br />
+                                            إذا كان لديك إجابات سابقة محفوظة, يمكنك مزامنتها تلقائيا من هنا
+                                        </h4>
+                                        <div class="clear"></div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a onclick="return LaunchExam();" id="btnLogUserNormal" class="buttonL bBlue mt10" href="javascript:__doPostBack(&#39;btnLogUserNormal&#39;,&#39;&#39;)"><span id="Label3" class="icon-upload"></span><span id="Label8">Sync browser results مزامنة نتائج المتصفح</span></a>
+
+                        <a onclick="return LaunchSecureBrowser();" id="btnLogUserSecure" class="buttonL bBlue ml10 mt10" href="javascript:__doPostBack(&#39;btnLogUserSecure&#39;,&#39;&#39;)"><span id="Label11" class="icon-upload"></span><span id="Label10">Sync secure browser results مزامنة نتائج المتصفح الآمن</span></a>
+                        <input type="hidden" name="hdnSecure" id="hdnSecure" value="ldb1:jk%7BDxh2/lmwcDPtb/imuD0BpqS72ZT3fB+SSvDKFFkK4g87yUTIrDPMh3cvr5TMT7fzRNA3kTmpMl/U8nFEp/8i7/1iKuM3nkhd%7D" />
+                        <input type="hidden" name="hdnPath" id="hdnPath" value="https://cluster5-3.moe.gov.ae/viewer/main.html?checkP=true" />
+                        <div class="clear">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+                <iframe id="launchframe" style="display: none"></iframe>
+
+                <div class="clear"></div>
+                <div class="viewR-Head " style="margin-top: 70px;">
+                    <i class="icon-clipboard" style="font-size: 20px;"></i>
+                    <h4 style="/* font-size: 20px; */line-height: 30px; font-family: calibri; font-weight: normal; margin-top: 10px;">If you are a <b>teacher or an invigilator</b>, click on the button below to login with your SwiftAssess account</h4>
+                    <div class="logControl ">
+
+                        <a id="lnkAdminLogin" class="buttonL bRed mt5 " href="/Admin/login" style="visibility: visible;"><span id="Label7" class="icon-locked"></span>Admin Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="clear"></div>
+        <div class="bottomNav-splash mt30 pt20">
+
+            <div class="mt20">
+
+                <span id="Label9" class="sa_Mast_Foot">Copyright © @app-year <a href='http://www.gamalearn.com'>GamaLearn</a>. All rights reserved</a>.</span>
+                <div class="clear"></div>
+                <a href="https://www.swiftassess.com" target="_blank">
+                    <img style="width: 200px; display: block; margin: 0 auto;" class="mt5" src="App_Themes/Workspace/images/sa-app_logo.png" title="SwiftAssess - The One-Stop Shop For All Your Assessment Needs" />
+                </a>
+            </div>
+
+        </div>
+        <audio id="toastErr">
+            <source src="App_Themes/Workspace/src/Audio/toastErr.ogg" type="audio/ogg">
+            <source src="App_Themes/Workspace/src/Audio/toastErr.mp3" type="audio/mpeg">
+            <source src="App_Themes/Workspace/src/Audio/toastErr.wav" type="audio/wav">
+        </audio>
+        <audio id="toastWarn">
+            <source src="App_Themes/Workspace/src/Audio/toastWarn.ogg" type="audio/ogg">
+            <source src="App_Themes/Workspace/src/Audio/toastWarn.mp3" type="audio/mpeg">
+            <source src="App_Themes/Workspace/src/Audio/toastWarn.wav" type="audio/wav">
+        </audio>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('RadScriptManager1', 'loginForm', ['tbtnLogUserPanel','','tRadAjaxManager1SU','RadAjaxManager1SU'], [], [], 90, '');
+//]]>
+</script>
+
+
+        <div id="popUpLoad" class="RadAjax RadAjax_Default" style="display:none;">
+	<div class="raDiv">
+		
+        
+	</div><div class="raColor raTransp">
+
+	</div>
+</div>
+        <!-- 2016.2.607.45 --><div id="RadAjaxManager1SU">
+	<span id="RadAjaxManager1" style="display:none;"></span>
+</div>
+
+        <!-- MSAL -->
+        <script src="https://cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
+        <script type="text/javascript" src="https://alcdn.msauth.net/lib/1.2.2/js/msal.min.js"></script>
+
+
+        <!-- Graph SDK -->
+        <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client/lib/graph-js-sdk.js"></script>
+        <script src="/SSO/config.js"></script>
+        <script src="/SSO/auth.js"></script>
+        <script>
+            if (msalClient.getAccount()) {
+                $('#lbl_O365_Login').text('Signed In as ( ' + msalClient.getAccount().name + ' - ' + msalClient.getAccount().userName + ' )');
+                $('#btnO365_Logout').show();
+            }
+            else {
+                $('#lbl_O365_Login').text('Student - Office 365 Login');
+                $('#btnO365_Logout').hide();
+            }
+        </script>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("reqExamKey"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var reqExamKey = document.all ? document.all["reqExamKey"] : document.getElementById("reqExamKey");
+reqExamKey.controltovalidate = "txtAuthPd";
+reqExamKey.focusOnError = "t";
+reqExamKey.errormessage = "*";
+reqExamKey.validationGroup = "examKey";
+reqExamKey.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+reqExamKey.initialvalue = "";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        setTimeout(function(){Telerik.Web.UI.RadAjaxControl.FocusElement("txtAuthPd");}, 0);WebForm_AutoFocus('btnLogUser');
+document.getElementById('reqExamKey').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('reqExamKey'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxLoadingPanel, {"initialDelayTime":0,"isSticky":false,"minDisplayTime":0,"skin":"Default","uniqueID":"popUpLoad","zIndex":90000}, null, null, $get("popUpLoad"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[{InitControlID : "btnLogUser",UpdatedControls : [{ControlID:"btnLogUser",PanelID:"popUpLoad"}]}],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"RadAjaxManager1","updatePanelsRenderMode":0}, null, null, $get("RadAjaxManager1"));
+});
+//]]>
+</script>
+</form>
+
+</body>
+</html>
