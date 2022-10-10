@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ANARCHY</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+	<link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body style="padding: 0px">
+<div class="tabContainer">
+    <div class="buttonContainer">
+        <button onclick="showPanel(0,'#252525')">Tab 1</button>
+        <button onclick="showPanel(1,'#252525')">Tab 2</button>
+        <button onclick="showPanel(2,'#252525')">Tab 3</button>
+        <button onclick="showPanel(3,'#252525')">Tab 4</button>
+    </div>
+    <div class="tabPanel">  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Browser</title>
+    <link rel="stylesheet" href="css/css/font-awesome.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+          webview {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+  </head>
+  <body id="browser">
+    <nav id="navigation">
+      <div id="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </div>
+      <div id="forward">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </div>
+      <div id="refresh">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <div id="omnibox">
+        <input type="text" value="https://google.com/" id="url">
+      </div>
+      <div id="fave">
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </div>
+      <div id="fave-popup" data-state="closed">
+      </div>
+      <div id="list">
+        <p style="color: red;"><b>X</b></p>
+      </div>
+      <div id="console"  style="-webkit-app-region: drag;">
+        <p><b>||||</b></p>
+      </div>
+    </nav>
+    <!--<div id="tabs">
+      <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+        <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+            <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+    </div>-->
+      <div id="views">
+        <webview autofocus allow="clipboard-read; clipboard-write" id="view" class="page" src="https://google.com/" autosize="on"></webview>
+      </div>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script></div>
+    <div class="tabPanel">  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Browser</title>
+    <link rel="stylesheet" href="css/css/font-awesome.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+          webview {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+  </head>
+  <body id="browser">
+    <nav id="navigation">
+      <div id="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </div>
+      <div id="forward">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </div>
+      <div id="refresh">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <div id="omnibox">
+        <input type="text" value="https://google.com/" id="url">
+      </div>
+      <div id="fave">
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </div>
+      <div id="fave-popup" data-state="closed">
+      </div>
+      <div id="list">
+        <p style="color: red;"><b>X</b></p>
+      </div>
+      <div id="console"  style="-webkit-app-region: drag;">
+        <p><b>||||</b></p>
+      </div>
+    </nav>
+    <!--<div id="tabs">
+      <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+        <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+            <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+    </div>-->
+      <div id="views">
+        <webview autofocus allow="clipboard-read; clipboard-write" id="view" class="page" src="https://google.com/" autosize="on"></webview>
+      </div>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script></div>
+    <div class="tabPanel">  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Browser</title>
+    <link rel="stylesheet" href="css/css/font-awesome.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+          webview {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+  </head>
+  <body id="browser">
+    <nav id="navigation">
+      <div id="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </div>
+      <div id="forward">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </div>
+      <div id="refresh">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <div id="omnibox">
+        <input type="text" value="https://google.com/" id="url">
+      </div>
+      <div id="fave">
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </div>
+      <div id="fave-popup" data-state="closed">
+      </div>
+      <div id="list">
+        <p style="color: red;"><b>X</b></p>
+      </div>
+      <div id="console"  style="-webkit-app-region: drag;">
+        <p><b>||||</b></p>
+      </div>
+    </nav>
+    <!--<div id="tabs">
+      <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+        <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+            <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+    </div>-->
+      <div id="views">
+        <webview autofocus allow="clipboard-read; clipboard-write" id="view" class="page" src="https://google.com/" autosize="on"></webview>
+      </div>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script></div>
+    <div class="tabPanel">  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Browser</title>
+    <link rel="stylesheet" href="css/css/font-awesome.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+          webview {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+  </head>
+  <body id="browser">
+    <nav id="navigation">
+      <div id="back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </div>
+      <div id="forward">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </div>
+      <div id="refresh">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <div id="omnibox">
+        <input type="text" value="https://google.com/" id="url">
+      </div>
+      <div id="fave">
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </div>
+      <div id="fave-popup" data-state="closed">
+      </div>
+      <div id="list">
+        <p style="color: red;"><b>X</b></p>
+      </div>
+      <div id="console"  style="-webkit-app-region: drag;">
+        <p><b>||||</b></p>
+      </div>
+    </nav>
+    <!--<div id="tabs">
+      <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+        <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+            <a class="tab">Titlegekn ekjng eknjg kegn engk 
+        <div class="close">
+          <i class="fa fa-times"></i>
+        </div>
+      </a>
+    </div>-->
+      <div id="views">
+        <webview autofocus allow="clipboard-read; clipboard-write" id="view" class="page" src="https://google.com/" autosize="on"></webview>
+      </div>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script></div>
+</div>
+
+<script src="myScript.js"></script>
+</body>
+</html>
