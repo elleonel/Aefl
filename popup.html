@@ -3,9 +3,22 @@
     color: green;
     font-size: medium;
     text-align: left;
-    aize: 100%;
-    width: 200%;
-    length: 200%;
+    height: 50%;
+    width: 50%;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    padding: 20px;
+  }
+
+  .popup.active {
+    opacity: 1;
   }
 </style>
 
@@ -16,3 +29,19 @@ Press '/' for multiple choice questions with 2 answers, Selectable questions and
 Press 'Enter' for the submit button in-game
 <br><br>
 Press '`' to copy the question into your clipboard</p>
+
+<script>
+  const popup = document.querySelector('.popup');
+
+  window.addEventListener('load', () => {
+    popup.classList.add('active');
+  });
+
+  popup.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+
+  document.body.addEventListener('click', () => {
+    popup.classList.remove('active');
+  });
+</script>
