@@ -1,47 +1,20 @@
 <style>
   .popup {
-    color: green;
+    color: rgb(22, 183, 145);;
     font-size: medium;
     text-align: left;
-    height: 50%;
-    width: 50%;
-    border-radius: 10px;
+    width: 100%;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    background-color: white;
-    padding: 20px;
+
   }
 
-  .popup.active {
-    opacity: 1;
-  }
+
 </style>
 
 <p class='popup'>Alef text now is selectable, if you want to disable this extension you should disable it form your browser settings
 <br><br>
-Press '/' for multiple choice questions with 2 answers, Selectable questions and shows incompleted lessons
+Press '  /  ' and see the magic
 <br><br>
-Press 'Enter' for the submit button in-game
-<br><br>
-Press '`' to copy the question into your clipboard</p>
+Press 'Enter' for the submit button
+<br><br></p>
 
-<script>
-  const popup = document.querySelector('.popup');
-
-  window.addEventListener('load', () => {
-    popup.classList.add('active');
-  });
-
-  popup.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-
-  document.body.addEventListener('click', () => {
-    popup.classList.remove('active');
-  });
-</script>
