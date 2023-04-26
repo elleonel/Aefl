@@ -1,20 +1,42 @@
-<style>
-  .popup {
-    color: rgb(22, 183, 145);;
-    font-size: medium;
-    text-align: left;
-    width: 100%;
-    position: fixed;
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alef Popup</title>
+    <style>
+      .popup {
+        color: rgb(22, 183, 145);
+        font-size: larger;
+        text-align: center;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.5s ease-in-out;
+      }
 
-  }
-
-
-</style>
-
-<p class='popup'>Alef text now is selectable, if you want to disable this extension you should disable it form your browser settings
-<br><br>
-Press '  /  ' and see the magic
-<br><br>
-Press 'Enter' for the submit button
-<br><br></p>
-
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="popup">
+      Alef text is now selectable. If you want to disable this extension, you should do so from your browser settings.
+      <br><br>
+      Press "/" and see the magic!
+      <br><br>
+      Press "Enter" for the submit button.
+    </p>
+  </body>
+</html>
