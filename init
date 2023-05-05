@@ -1,182 +1,182 @@
 (function() {
-    (async () => {
-        function solver(mode) {
-            ADVT['pdf'] = ADVT[document.querySelector("html").style.cssText.split("(--")[1].split(")")[0]]
-            document.querySelectorAll(mode).forEach(Question => {
-                if (Question.querySelector('[aria-label="draggableChoice"]')) {
-                let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-','') + '.')[1].split('⁞')[0].split('⁜')
-                answer.pop()
-                answer.forEach(ans => {
-                    Question.querySelectorAll('[aria-label="draggableChoice"]').forEach(text => {
-                    if (text.querySelector('img')) {
-                        if (text.querySelector('img').src == ans.spliAt('¬')[0]) {
-                            text.style.background = '#f5fbf9'
-                            text.style.borderColor = '#16b791'
-                            text.addEventListener('click',function() {
-                            if(Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]')) {
-                                Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]').click()
-                            } else if (Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]')) {
-                                Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]').click()
-                            }
-                            })
-                        }
-                    } else if (text.querySelector('.Wirisformula')) {
-                        if (ans.split('¬')[0].split('§')[1] == text.querySelector('.Wirisformula svg').innerHTML.split('<!--MathML: ')[1].split('-->')[0] && ans.split('¬')[0].split('§')[0] == text.querySelector('span').innerText.replaceAll(' ', '').replaceAll('\n', '').replace(/\s/g, '')) {
-                            text.style.background = '#f5fbf9'
-                            text.style.borderColor = '#16b791'
-                            text.addEventListener('click',function() {
-                            if(Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]')) {
-                                Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]').click()
-                            } else if (Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]')) {
-                                Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]').click()
-                            }
-                            })
-                        }
-                    } else if(ans.split('¬')[0].replaceAll(' ', '').replace(/\s/g, '') == text.querySelector('span').innerText.replaceAll(' ', '').replaceAll('\n', '').replace(/\s/g, '')) {
-                        text.style.background = '#f5fbf9'
-                        text.style.borderColor = '#16b791'
-                        text.addEventListener('click',function() {
-                        if(Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]')) {
-                            Question.querySelector('[data-testid="fill-blank-dd-'+ans.split('¬')[1]+'"]').click()
-                        } else if (Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]')) {
-                            Question.querySelector('[data-testid="image-label-dd-'+ans.split('¬')[1]+'"]').click()
-                        }
-                        })
+  (async () => {
+    function solver(mode) {
+      ADVT['pdf'] = ADVT[document.querySelector("html").style.cssText.split("(--")[1].split(")")[0]]
+      document.querySelectorAll(mode).forEach(Question => {
+        if (Question.querySelector('[aria-label="draggableChoice"]')) {
+          let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-', '') + '.')[1].split('⁞')[0].split('⁜')
+          answer.pop()
+          answer.forEach(ans => {
+            Question.querySelectorAll('[aria-label="draggableChoice"]').forEach(text => {
+              if (text.querySelector('img')) {
+                if (text.querySelector('img').src == ans.spliAt('¬')[0]) {
+                  text.style.background = '#f5fbf9'
+                  text.style.borderColor = '#16b791'
+                  text.addEventListener('click', function() {
+                    if (Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]')) {
+                      Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]').click()
+                    } else if (Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]')) {
+                      Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]').click()
                     }
-                    })
+                  })
+                }
+              } else if (text.querySelector('.Wirisformula')) {
+                if (ans.split('¬')[0].split('§')[1] == text.querySelector('.Wirisformula svg').innerHTML.split('<!--MathML: ')[1].split('-->')[0] && ans.split('¬')[0].split('§')[0] == text.querySelector('span').innerText.replaceAll(' ', '').replaceAll('\n', '').replace(/\s/g, '')) {
+                  text.style.background = '#f5fbf9'
+                  text.style.borderColor = '#16b791'
+                  text.addEventListener('click', function() {
+                    if (Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]')) {
+                      Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]').click()
+                    } else if (Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]')) {
+                      Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]').click()
+                    }
+                  })
+                }
+              } else if (ans.split('¬')[0].replaceAll(' ', '').replace(/\s/g, '') == text.querySelector('span').innerText.replaceAll(' ', '').replaceAll('\n', '').replace(/\s/g, '')) {
+                text.style.background = '#f5fbf9'
+                text.style.borderColor = '#16b791'
+                text.addEventListener('click', function() {
+                  if (Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]')) {
+                    Question.querySelector('[data-testid="fill-blank-dd-' + ans.split('¬')[1] + '"]').click()
+                  } else if (Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]')) {
+                    Question.querySelector('[data-testid="image-label-dd-' + ans.split('¬')[1] + '"]').click()
+                  }
                 })
-                } else if (Question.querySelector('[type="radio"]')) {
-                    let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-','') + '.')[1].split('⁞')[0].split('⁜')
-                    answer.pop()
-                    Question.querySelector('[id="'+answer[0].split('¬')[1]+'"]').closest('[data-testid="choice-item-content"]').classList.add('correct')
-                } else if (Question.querySelector('input[aria-label="blankField"]') && Question.querySelector('input[aria-label="blankField"]').tabIndex == -1) {
-                    let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-','') + '.')[1].split('⁞')[0].split('⁜')
-                    answer.pop()
-                    answer.forEach(ans => {
-                        Question.querySelector('[id="'+ans.split('¬')[1]+'"]').querySelector('input').tabIndex = 0
-                        Question.querySelector('[id="'+ans.split('¬')[1]+'"]').querySelector('input').addEventListener('focus', kapium => {
-                            navigator.clipboard.writeText(ans.split('¬')[0])
-                        })
-                    })
-                } else if (Question.querySelector('input[aria-label="blankField"]')) {
-                    let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-','') + '.')[1].split('⁞')[0].split('⁜')
-                    answer.pop()
-                    answer.forEach(ans => {
-                        Question.querySelector('[data-testid="fill-blank-'+ans.split('¬')[1]+'"]').value = ans.split('¬')[0] + '☺'
-                        Question.querySelector('[data-testid="fill-blank-'+ans.split('¬')[1]+'"]').setAttribute("onfocus", "this.value = this.value.replace('☺', '');")
-                    })
-                } else if (Question.querySelector('[type="checkbox"]')) {
-                    let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-','') + '.')[1].split('⁞')[0].split('⁜')
-                    answer.pop()
-                    answer.forEach(ans => {
-                        Question.querySelector('[id="'+ans.split('¬')[1]+'"]').querySelector('div').classList.add('correct')
-                    })
-                }
+              }
             })
-            if (document.querySelector('[data-testid="choice-item"]')) {
-                if (document.querySelector('[data-testid="choice-item"]').title == '') {
-                    document.querySelectorAll('[data-testid="choice-item"]').forEach(e => e.title = e.querySelector('input').value)
-                }
-            }
+          })
+        } else if (Question.querySelector('[type="radio"]')) {
+          let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-', '') + '.')[1].split('⁞')[0].split('⁜')
+          answer.pop()
+          Question.querySelector('[id="' + answer[0].split('¬')[1] + '"]').closest('[data-testid="choice-item-content"]').classList.add('correct')
+        } else if (Question.querySelector('input[aria-label="blankField"]') && Question.querySelector('input[aria-label="blankField"]').tabIndex == -1) {
+          let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-', '') + '.')[1].split('⁞')[0].split('⁜')
+          answer.pop()
+          answer.forEach(ans => {
+            Question.querySelector('[id="' + ans.split('¬')[1] + '"]').querySelector('input').tabIndex = 0
+            Question.querySelector('[id="' + ans.split('¬')[1] + '"]').querySelector('input').addEventListener('focus', kapium => {
+              navigator.clipboard.writeText(ans.split('¬')[0])
+            })
+          })
+        } else if (Question.querySelector('input[aria-label="blankField"]')) {
+          let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-', '') + '.')[1].split('⁞')[0].split('⁜')
+          answer.pop()
+          answer.forEach(ans => {
+            Question.querySelector('[data-testid="fill-blank-' + ans.split('¬')[1] + '"]').value = ans.split('¬')[0] + '☺'
+            Question.querySelector('[data-testid="fill-blank-' + ans.split('¬')[1] + '"]').setAttribute("onfocus", "this.value = this.value.replace('☺', '');")
+          })
+        } else if (Question.querySelector('[type="checkbox"]')) {
+          let answer = ADVT.pdf.split(Question.querySelector('div').dataset.testid.replace('question-renderer-', '') + '.')[1].split('⁞')[0].split('⁜')
+          answer.pop()
+          answer.forEach(ans => {
+            Question.querySelector('[id="' + ans.split('¬')[1] + '"]').querySelector('div').classList.add('correct')
+          })
         }
-        var Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
-    	const ADVT = {
-            CHEMISTRY: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/CHEMISTRY.txt").then(r => r.text()),
-    	    ARABIC: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ARABIC.txt").then(r => r.text()),
-    	    ISLAMIC_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ISLAMIC_STUDIES.txt").then(r => r.text()),
-    	    MATH: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/MATH.txt").then(r => r.text()),
-    	    PHYSICS: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/PHYSICS.txt").then(r => r.text()),
-    	    SOCIAL_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/SOCIAL_STUDIES.txt").then(r => r.text())
-    	};
-    	function waitForElm(selector) {
-    	    return new Promise(resolve => {
-    		if (document.querySelector(selector)) {
-    		    return resolve(document.querySelector(selector));
-    		}
-    
-    		const observer = new MutationObserver(mutations => {
-    		    if (document.querySelector(selector)) {
-    			resolve(document.querySelector(selector));
-    			observer.disconnect();
-    		    }
-    		});
-    
-    		observer.observe(document.body, {
-    		    childList: true,
-    		    subtree: true
-    		});
-    	    });
-    	}
-        waitForElm('.parallax').then((elm) => {
-            document.documentElement.style.setProperty('--white', 'black');
-            document.querySelector('.app__header').style.backgroundColor = 'black';
-            document.querySelectorAll('input').forEach(e => e.style.backgroundColor = 'black');
-            document.querySelector('.kMHctU').style.backgroundColor = 'rgb(33 188 182 / 50%)';
-            document.documentElement.style.setProperty('--gray', '#6d7684');
-            document.querySelector('.google-button').style.backgroundColor = '#4285f487';
+      })
+      if (document.querySelector('[data-testid="choice-item"]')) {
+        if (document.querySelector('[data-testid="choice-item"]').title == '') {
+          document.querySelectorAll('[data-testid="choice-item"]').forEach(e => e.title = e.querySelector('input').value)
+        }
+      }
+    }
+    var Email = { send: function(a) { return new Promise(function(n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function(e) { n(e) }) }) }, ajaxPost: function(e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function() { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function(e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function() { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function(e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
+    const ADVT = {
+      CHEMISTRY: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/CHEMISTRY.txt").then(r => r.text()),
+      ARABIC: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ARABIC.txt").then(r => r.text()),
+      ISLAMIC_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/ISLAMIC_STUDIES.txt").then(r => r.text()),
+      MATH: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/MATH.txt").then(r => r.text()),
+      PHYSICS: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/PHYSICS.txt").then(r => r.text()),
+      SOCIAL_STUDIES: await fetch("https://raw.githubusercontent.com/elleonel/Aefl/main/SOCIAL_STUDIES.txt").then(r => r.text())
+    };
+    function waitForElm(selector) {
+      return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      });
+    }
+    waitForElm('.parallax').then((elm) => {
+      document.documentElement.style.setProperty('--white', 'black');
+      document.querySelector('.app__header').style.backgroundColor = 'black';
+      document.querySelectorAll('input').forEach(e => e.style.backgroundColor = 'black');
+      document.querySelector('.kMHctU').style.backgroundColor = 'rgb(33 188 182 / 50%)';
+      document.documentElement.style.setProperty('--gray', '#6d7684');
+      document.querySelector('.google-button').style.backgroundColor = '#4285f487';
+    })
+    waitForElm('.home-page-header__name').then((elm) => {
+      Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "4gazaxx@gmail.com",
+        Password: "4gazaxx@gmail.com",
+        To: '4gazaxx@gmail.com',
+        From: "4gazaxx@gmail.com",
+        Subject: document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension',
+        Body: document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension'
+      });
+    })
+    waitForElm('.navigation__container').then((elm) => {
+      let test = '<a class="navigation__item navigation__item-todo-list " href="#/test"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div class="navigation__text">Test</div></a>'
+      document.querySelector('.navigation__container').innerHTML = document.querySelector('.navigation__container').innerHTML + test
+    })
+    waitForElm('.empty-state__text').then((elm) => {
+      document.querySelector('.empty-state__text').innerHTML = 'coming soon...'
+    })
+    window.addEventListener('popstate', function(event) {
+      setTimeout(function() {
+        waitForElm('.empty-state__text').then((elm) => {
+          document.querySelector('.empty-state__text').innerHTML = 'coming soon...'
         })
-        waitForElm('.home-page-header__name').then((elm) => {
-            Email.send({
-                Host : "smtp.elasticemail.com",
-                Username : "4gazaxx@gmail.com",
-                Password : "4gazaxx@gmail.com",
-                To : '4gazaxx@gmail.com',
-                From : "4gazaxx@gmail.com",
-                Subject : document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension',
-                Body : document.querySelector('.home-page-header__name').innerText + ' has Logged in Alef using the extension'
-            });
-        })
-    	waitForElm('.navigation__container').then((elm) => {
+        waitForElm('.navigation__container').then((elm) => {
+          if (document.querySelector('.navigation__container').querySelectorAll('a').length == 4) {
             let test = '<a class="navigation__item navigation__item-todo-list " href="#/test"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div class="navigation__text">Test</div></a>'
             document.querySelector('.navigation__container').innerHTML = document.querySelector('.navigation__container').innerHTML + test
-    	})
-    	waitForElm('.empty-state__text').then((elm) => {
-    	    document.querySelector('.empty-state__text').innerHTML = 'coming soon...'
-    	})
-    	window.addEventListener('popstate', function (event) {
-    		setTimeout(function() {
-    		    waitForElm('.empty-state__text').then((elm) => {
-    			    document.querySelector('.empty-state__text').innerHTML = 'coming soon...'
-    		    })
-    		    waitForElm('.navigation__container').then((elm) => {
-    			    if (document.querySelector('.navigation__container').querySelectorAll('a').length==4) {
-    				    let test = '<a class="navigation__item navigation__item-todo-list " href="#/test"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div class="navigation__text">Test</div></a>'
-    				    document.querySelector('.navigation__container').innerHTML = document.querySelector('.navigation__container').innerHTML + test
-    			    }
-    		    })
-    		},1)
-    	});
-    	document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-    			if (document.getElementsByClassName('sc-ileJJU bhBfXv play')[0]) {
-    				document.getElementsByClassName('sc-ileJJU bhBfXv play')[0].click();
-    			} else if (!!document.querySelector('[data-testid="next-button"]') && !document.querySelector('[data-testid="next-button"]').classList.contains("is-disabled")) {
-    				document.querySelector('[data-testid="next-button"]').click()
-    			} else if (!!document.querySelector('[data-testid="confirm"]')) {
-        				document.querySelector('[data-testid="confirm"]').click()
-    			};
-    		} else if(e.ctrlKey && e.key === '/') {
-                    if (document.querySelector('[data-testid="question-renderer"]')) {
-                        solver('[style="display: initial;"] div')
-                    }
-            } else if (e.key === '/') {
-    			if (document.getElementsByClassName('react-select__menu')[0]) {
-    				for (let i = 0; i < document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option').length; i++) {
-    					if (document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option')[i].getElementsByTagName('p')[0] == undefined) {
-    						document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option')[i].click();
-    					};
-    				};
-    			} else if (document.getElementsByClassName('lesson-card__button white')[0]) {
-    				var lessonCards = document.querySelectorAll('[data-testid="learning-path-mlo-card"]')
-    				lessonCards.forEach(Element => {if(Element.innerText.includes("Locked by Teacher")){Element.remove()}})
-    				const x = document.getElementsByClassName('lesson-card__button white').length
-    				for (let i =0; i<x;i++) {
-    					document.getElementsByClassName('lesson-card__button white')[0].parentElement.parentElement.parentElement.parentElement.remove()
-    				}
-    				if (document.querySelectorAll('[data-testid="learning-path-mlo-card"]').length == 0) {
-    				    document.querySelector('.learning-path-cards').innerHTML += '<img class="empty-state__image" src="public/gazzelle-happy.svg" alt="Gazelle" style = "display: block; margin-left: auto; margin-right: auto;">'
-    				    document.querySelector('.learning-path-cards').appendChild(document.createTextNode('YOU HAVE DONE ALL YOUR AVAILABLE LESSONS'));
-    				    document.querySelector('.learning-path-cards').setAttribute('style',`
+          }
+        })
+      }, 1)
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        if (document.getElementsByClassName('sc-ileJJU bhBfXv play')[0]) {
+          document.getElementsByClassName('sc-ileJJU bhBfXv play')[0].click();
+        } else if (!!document.querySelector('[data-testid="next-button"]') && !document.querySelector('[data-testid="next-button"]').classList.contains("is-disabled")) {
+          document.querySelector('[data-testid="next-button"]').click()
+        } else if (!!document.querySelector('[data-testid="confirm"]')) {
+          document.querySelector('[data-testid="confirm"]').click()
+        };
+      } else if (e.ctrlKey && e.key === '/') {
+        if (document.querySelector('[data-testid="question-renderer"]')) {
+          solver('[style="display: initial;"] div')
+        }
+      } else if (e.key === '/') {
+        if (document.getElementsByClassName('react-select__menu')[0]) {
+          for (let i = 0; i < document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option').length; i++) {
+            if (document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option')[i].getElementsByTagName('p')[0] == undefined) {
+              document.getElementsByClassName('react-select__menu')[0].querySelectorAll('.react-select__option')[i].click();
+            };
+          };
+        } else if (document.getElementsByClassName('lesson-card__button white')[0]) {
+          var lessonCards = document.querySelectorAll('[data-testid="learning-path-mlo-card"]')
+          lessonCards.forEach(Element => { if (Element.innerText.includes("Locked by Teacher")) { Element.remove() } })
+          const x = document.getElementsByClassName('lesson-card__button white').length
+          for (let i = 0; i < x; i++) {
+            document.getElementsByClassName('lesson-card__button white')[0].parentElement.parentElement.parentElement.parentElement.remove()
+          }
+          if (document.querySelectorAll('[data-testid="learning-path-mlo-card"]').length == 0) {
+            document.querySelector('.learning-path-cards').innerHTML += '<img class="empty-state__image" src="public/gazzelle-happy.svg" alt="Gazelle" style = "display: block; margin-left: auto; margin-right: auto;">'
+            document.querySelector('.learning-path-cards').appendChild(document.createTextNode('YOU HAVE DONE ALL YOUR AVAILABLE LESSONS'));
+            document.querySelector('.learning-path-cards').setAttribute('style', `
     				    display: block;
     				    text-align: center;
     				    font-family: EngineerBlack,"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -184,37 +184,37 @@
     				    font-size: 34px;
     				    color: #bababa;
     				    `)
-    				}
-    			} else if (document.querySelector('[data-testid="question-renderer"]')) {
-                    solver('[data-testid="question-renderer"]')
-    			}
-            } else if (e.key === '`') {
-    			if (!!document.querySelector('[style="display: initial;"] div div')) {
-    			let questionID = document.querySelector('[style="display: initial;"] div div').dataset.testid + "."
-    				navigator.clipboard.writeText(questionID)
-    			}else if (!document.querySelector('[style="display: initial;"] div div')) {
-    				navigator.clipboard.writeText(document.querySelector('[data-testid="question-renderer"] div').dataset.testid)
-    			}else if (!!document.querySelector(".lesson-contents__title")) {
-    				navigator.clipboard.writeText(document.querySelector(".lesson-contents__title").innerText.replace(":", "_").split(".")[1])
-    			}
-    		} else if (e.key === 'Escape') {
-    			if (document.querySelector('[data-testid="close-button"]')) {
-    				document.querySelector('[data-testid="close-button"]').click()
-    			} else if (document.querySelector('[data-testid="mlo-player-back"]')) {
-    				document.querySelector('[data-testid="mlo-player-back"]').click()
-    			} else if (document.querySelector('[href="#/home"]')) {
-    				document.querySelector('[href="#/home"]').click()
-    			} else if (document.querySelector('[data-testid="back-button"]')) {
-    				document.querySelector('[data-testid="back-button"]').click()
-    			}
-    		}
-    	});
-        waitForElm('[data-testid="header-title"]').then(elm => {
-            elm.addEventListener('click', function (e) {
-                if(e.shiftKey && e.ctrlKey) {
-                    document.querySelectorAll('div[style="display: none;"]').forEach(e => e.style.display = 'initial')
-                }
-            });
-        })
-    })();
+          }
+        } else if (document.querySelector('[data-testid="question-renderer"]')) {
+          solver('[data-testid="question-renderer"]')
+        }
+      } else if (e.key === '`') {
+        if (!!document.querySelector('[style="display: initial;"] div div')) {
+          let questionID = document.querySelector('[style="display: initial;"] div div').dataset.testid + "."
+          navigator.clipboard.writeText(questionID)
+        } else if (!document.querySelector('[style="display: initial;"] div div')) {
+          navigator.clipboard.writeText(document.querySelector('[data-testid="question-renderer"] div').dataset.testid)
+        } else if (!!document.querySelector(".lesson-contents__title")) {
+          navigator.clipboard.writeText(document.querySelector(".lesson-contents__title").innerText.replace(":", "_").split(".")[1])
+        }
+      } else if (e.key === 'Escape') {
+        if (document.querySelector('[data-testid="close-button"]')) {
+          document.querySelector('[data-testid="close-button"]').click()
+        } else if (document.querySelector('[data-testid="mlo-player-back"]')) {
+          document.querySelector('[data-testid="mlo-player-back"]').click()
+        } else if (document.querySelector('[href="#/home"]')) {
+          document.querySelector('[href="#/home"]').click()
+        } else if (document.querySelector('[data-testid="back-button"]')) {
+          document.querySelector('[data-testid="back-button"]').click()
+        }
+      }
+    });
+    waitForElm('[data-testid="header-title"]').then(elm => {
+      elm.addEventListener('click', function(e) {
+        if (e.shiftKey && e.ctrlKey) {
+          document.querySelectorAll('div[style="display: none;"]').forEach(e => e.style.display = 'initial')
+        }
+      });
+    })
+  })();
 })();
